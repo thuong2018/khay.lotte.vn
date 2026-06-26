@@ -1,0 +1,756 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GiáBia.vn – Sàn Giao Dịch Bia Sài Gòn</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&family=Barlow:wght@400;500;600&display=swap');
+
+:root {
+  --bg0:    #0a0c0e;
+  --bg1:    #111416;
+  --bg2:    #181c1f;
+  --bg3:    #1f2428;
+  --bdr:    #2a3038;
+  --amber:  #f0a500;
+  --amber2: #ffcc44;
+  --foam:   #e8e0c8;
+  --green:  #2dba8c;
+  --red:    #e84545;
+  --txt1:   #e8dfc8;
+  --txt2:   #8a8070;
+  --txt3:   #3a3530;
+  --mono:   'IBM Plex Mono', monospace;
+  --cond:   'Barlow Condensed', sans-serif;
+  --body:   'Barlow', sans-serif;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html,body { height: 100%; overflow: hidden; background: var(--bg0); color: var(--txt1); font-family: var(--body); }
+
+/* ─── HEADER ─── */
+header {
+  height: 48px;
+  background: var(--bg1);
+  border-bottom: 1px solid var(--bdr);
+  display: flex;
+  align-items: center;
+  gap: 0;
+  flex-shrink: 0;
+}
+.logo-block {
+  width: 200px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0 16px;
+  border-right: 1px solid var(--bdr);
+  height: 100%;
+  flex-shrink: 0;
+}
+.logo-icon { font-size: 20px; }
+.logo-text { font-family: var(--cond); font-size: 18px; font-weight: 800; letter-spacing: .06em; }
+.logo-text em { color: var(--amber); font-style: normal; }
+
+.ticker-scroll {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  overflow-x: auto;
+  scrollbar-width: none;
+  flex: 1;
+  height: 100%;
+}
+.ticker-scroll::-webkit-scrollbar { display: none; }
+
+.t-pill {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 0 14px;
+  height: 100%;
+  border-right: 1px solid var(--bdr);
+  cursor: pointer;
+  transition: background .12s;
+  white-space: nowrap;
+  position: relative;
+}
+.t-pill::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 2px;
+  background: transparent;
+  transition: background .12s;
+}
+.t-pill:hover { background: var(--bg2); }
+.t-pill.active { background: var(--bg2); }
+.t-pill.active::after { background: var(--amber); }
+.tp-icon { font-size: 16px; }
+.tp-sym { font-family: var(--cond); font-size: 13px; font-weight: 700; letter-spacing: .04em; color: var(--foam); }
+.tp-price { font-family: var(--mono); font-size: 11px; color: var(--txt2); }
+.tp-chg { font-family: var(--mono); font-size: 10px; font-weight: 600; }
+.up   { color: var(--green); }
+.down { color: var(--red); }
+
+.header-right { padding: 0 14px; display: flex; align-items: center; gap: 8px; }
+.live-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--green); animation: blink 2s infinite; }
+@keyframes blink { 0%,100%{opacity:1}50%{opacity:.3} }
+.live-txt { font-family: var(--mono); font-size: 10px; color: var(--txt2); }
+
+/* ─── LAYOUT ─── */
+.workspace { display: flex; height: calc(100vh - 48px - 28px); }
+
+/* ─── SIDEBAR ─── */
+.sidebar {
+  width: 200px;
+  background: var(--bg1);
+  border-right: 1px solid var(--bdr);
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: var(--bdr) transparent;
+}
+.sb-hd {
+  padding: 10px 12px 6px;
+  font-family: var(--cond);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--txt3);
+  border-bottom: 1px solid var(--bdr);
+}
+.sb-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 9px 12px;
+  cursor: pointer;
+  border-left: 3px solid transparent;
+  transition: background .1s, border-color .1s;
+}
+.sb-item:hover { background: var(--bg2); }
+.sb-item.active { background: var(--bg2); border-left-color: var(--amber); }
+.sb-emoji { font-size: 18px; line-height: 1; }
+.sb-info { flex: 1; min-width: 0; }
+.sb-name { font-family: var(--cond); font-size: 13px; font-weight: 700; color: var(--foam); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.sb-sub  { font-size: 10px; color: var(--txt2); }
+.sb-nums { text-align: right; }
+.sb-price { font-family: var(--mono); font-size: 11px; }
+.sb-pct   { font-family: var(--mono); font-size: 10px; }
+
+.sb-divider { height: 1px; background: var(--bdr); margin: 4px 0; }
+
+/* ─── CHART AREA ─── */
+.chart-area { flex: 1; display: flex; flex-direction: column; overflow: hidden; min-width: 0; }
+
+/* toolbar */
+.ctoolbar {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 0 14px;
+  height: 44px;
+  background: var(--bg1);
+  border-bottom: 1px solid var(--bdr);
+  flex-shrink: 0;
+}
+.ct-asset { display: flex; align-items: center; gap: 8px; }
+.ct-emoji { font-size: 20px; }
+.ct-name  { font-family: var(--cond); font-size: 18px; font-weight: 800; color: var(--foam); letter-spacing: .02em; }
+.ct-unit  { font-family: var(--mono); font-size: 10px; color: var(--txt2); }
+.ct-price { font-family: var(--mono); font-size: 20px; font-weight: 600; letter-spacing: -.02em; }
+.ct-chg   { font-family: var(--mono); font-size: 12px; }
+.ct-spacer { flex: 1; }
+.tf-grp { display: flex; gap: 2px; }
+.tf-btn {
+  padding: 4px 10px;
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--txt2);
+  cursor: pointer;
+  transition: all .1s;
+}
+.tf-btn:hover  { background: var(--bg3); color: var(--txt1); }
+.tf-btn.active { background: var(--bg3); border-color: var(--bdr); color: var(--amber2); }
+
+/* ohlc row */
+.ohlc-row {
+  display: flex;
+  gap: 18px;
+  align-items: center;
+  padding: 5px 14px;
+  background: var(--bg1);
+  border-bottom: 1px solid var(--bdr);
+  flex-shrink: 0;
+}
+.or-item { font-family: var(--mono); font-size: 10px; display: flex; gap: 5px; }
+.or-lbl  { color: var(--txt3); }
+.or-val  { color: var(--txt1); }
+
+/* canvas wrappers */
+.candle-wrap { flex: 1; position: relative; overflow: hidden; }
+#candleCanvas { display: block; }
+
+.vol-wrap { height: 64px; position: relative; background: var(--bg0); border-top: 1px solid var(--bdr); }
+#volCanvas { display: block; }
+
+/* ─── RIGHT PANEL ─── */
+.rpanel {
+  width: 180px;
+  background: var(--bg1);
+  border-left: 1px solid var(--bdr);
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: var(--bdr) transparent;
+  flex-shrink: 0;
+}
+.rp-hd {
+  padding: 8px 12px 4px;
+  font-family: var(--cond);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--txt3);
+  border-bottom: 1px solid var(--bdr);
+}
+.rp-row { display: flex; justify-content: space-between; align-items: center; padding: 6px 12px; border-bottom: 1px solid rgba(255,255,255,.03); }
+.rp-k   { font-size: 11px; color: var(--txt2); }
+.rp-v   { font-family: var(--mono); font-size: 11px; color: var(--txt1); }
+
+.rp-spark-wrap { padding: 10px 12px 6px; }
+.rp-spark-lbl  { font-size: 9px; color: var(--txt3); margin-bottom: 4px; font-family: var(--cond); letter-spacing: .08em; text-transform: uppercase; }
+
+/* ─── STATUS ─── */
+.statusbar {
+  height: 28px;
+  background: var(--bg1);
+  border-top: 1px solid var(--bdr);
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 0 14px;
+  font-family: var(--mono);
+  font-size: 10px;
+  color: var(--txt2);
+  flex-shrink: 0;
+}
+.sb-gap { flex: 1; }
+
+/* Saigon watermark */
+.wm {
+  position: absolute;
+  bottom: 80px;
+  right: 20px;
+  font-family: var(--cond);
+  font-size: 64px;
+  font-weight: 800;
+  color: rgba(240,165,0,.04);
+  letter-spacing: .08em;
+  pointer-events: none;
+  user-select: none;
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="logo-block">
+    <span class="logo-icon">🍺</span>
+    <div class="logo-text">Giá<em>Bia</em>.vn</div>
+  </div>
+  <div class="ticker-scroll" id="tickerScroll"></div>
+  <div class="header-right">
+    <div class="live-dot"></div>
+    <span class="live-txt" id="hdrTime">--:--:--</span>
+  </div>
+</header>
+
+<div class="workspace">
+
+  <div class="sidebar" id="sidebar"></div>
+
+  <div class="chart-area">
+    <div class="ctoolbar">
+      <div class="ct-asset">
+        <span class="ct-emoji" id="ctEmoji">🍺</span>
+        <div>
+          <div class="ct-name" id="ctName">–</div>
+          <div class="ct-unit" id="ctUnit">–</div>
+        </div>
+      </div>
+      <div class="ct-price" id="ctPrice">–</div>
+      <div class="ct-chg"   id="ctChg">–</div>
+      <div class="ct-spacer"></div>
+      <div class="tf-grp">
+        <button class="tf-btn active" onclick="setTF(this,'7N')">7N</button>
+        <button class="tf-btn" onclick="setTF(this,'1T')">1T</button>
+        <button class="tf-btn" onclick="setTF(this,'3T')">3T</button>
+        <button class="tf-btn" onclick="setTF(this,'6T')">6T</button>
+        <button class="tf-btn" onclick="setTF(this,'1N')">1N</button>
+      </div>
+    </div>
+
+    <div class="ohlc-row" id="ohlcRow">
+      <div class="or-item"><span class="or-lbl">M</span><span class="or-val" id="oO">–</span></div>
+      <div class="or-item"><span class="or-lbl">C</span><span class="or-val" id="oH">–</span></div>
+      <div class="or-item"><span class="or-lbl">T</span><span class="or-val" id="oL">–</span></div>
+      <div class="or-item"><span class="or-lbl">Đ</span><span class="or-val" id="oC">–</span></div>
+      <div class="or-item"><span class="or-lbl">KL</span><span class="or-val" id="oV">–</span></div>
+      <div class="or-item" style="margin-left:auto;"><span class="or-lbl" id="oDate">–</span></div>
+    </div>
+
+    <div class="candle-wrap" id="candleWrap">
+      <canvas id="candleCanvas"></canvas>
+      <div class="wm" id="wmText">SÀI GÒN</div>
+    </div>
+    <div class="vol-wrap" id="volWrap">
+      <canvas id="volCanvas"></canvas>
+    </div>
+  </div>
+
+  <div class="rpanel" id="rpanel"></div>
+</div>
+
+<div class="statusbar">
+  <div class="live-dot"></div>
+  <span id="stTime">–</span>
+  <span>Dữ liệu mô phỏng · GiáBia.vn</span>
+  <div class="sb-gap"></div>
+  <span id="stCandles">– nến</span>
+  <span>v2.0 🍺</span>
+</div>
+
+<script>
+// ═══════════════════════════════════════════════════
+//  DATA
+// ═══════════════════════════════════════════════════
+function seed(s) {
+  let x = Math.sin(s) * 10000;
+  return x - Math.floor(x);
+}
+
+function genCandles(basePrice, days, vol, trend, seedBase) {
+  const arr = [];
+  let price = basePrice;
+  const now = new Date('2025-06-26');
+  for (let i = days; i >= 0; i--) {
+    const d = new Date(now);
+    d.setDate(d.getDate() - i);
+    const r1 = seed(seedBase + i * 3.7);
+    const r2 = seed(seedBase + i * 5.3 + 1);
+    const r3 = seed(seedBase + i * 2.1 + 2);
+    const r4 = seed(seedBase + i * 8.9 + 3);
+    const move = (r1 - 0.47) * vol + trend;
+    const open  = price;
+    const close = Math.max(price + move, basePrice * 0.6);
+    const high  = Math.max(open, close) + r2 * vol * 0.6;
+    const low   = Math.min(open, close) - r3 * vol * 0.5;
+    const volume = Math.round(80 + r4 * 300);
+    arr.push({ t: new Date(d), o: +open.toFixed(0), h: +high.toFixed(0), l: +Math.max(low,100).toFixed(0), c: +close.toFixed(0), v: volume });
+    price = close;
+  }
+  return arr;
+}
+
+const ASSETS = {
+  rice:    { id:'rice',    emoji:'🌾', name:'Gạo ST25',      unit:'VNĐ/kg',  color:'#f5c842', data: genCandles(22000, 365, 380, 4,  11) },
+  saigon:  { id:'saigon',  emoji:'🍺', name:'Bia Sài Gòn',   unit:'VNĐ/lon', color:'#e84e1b', data: genCandles(12500, 365, 180, 2,  22) },
+  larue:   { id:'larue',   emoji:'🟡', name:'Bia LaRue',     unit:'VNĐ/lon', color:'#f0c010', data: genCandles(11000, 365, 160, 1.5, 33) },
+  huda:    { id:'huda',    emoji:'🔵', name:'Bia Huda',      unit:'VNĐ/lon', color:'#2a8cda', data: genCandles(10500, 365, 150, 1,  44) },
+  heineken:{ id:'heineken',emoji:'💚', name:'Bia Heineken',  unit:'VNĐ/lon', color:'#1db954', data: genCandles(18500, 365, 220, 3,  55) },
+};
+
+let curAsset = 'saigon';
+let curTF    = '7N';
+
+// ═══════════════════════════════════════════════════
+//  HELPERS
+// ═══════════════════════════════════════════════════
+const fmt  = n => (+n).toLocaleString('vi-VN');
+const fmtD = d => d.toLocaleDateString('vi-VN',{day:'2-digit',month:'2-digit'});
+const fmtDL = d => d.toLocaleDateString('vi-VN',{day:'2-digit',month:'2-digit',year:'numeric'});
+
+function tfDays(tf) {
+  return {  '7N':7,'1T':30,'3T':90,'6T':180,'1N':365 }[tf]||30;
+}
+function getSlice(id,tf) {
+  return ASSETS[id].data.slice(-tfDays(tf)-1);
+}
+
+// ═══════════════════════════════════════════════════
+//  TICKER
+// ═══════════════════════════════════════════════════
+function buildTicker() {
+  const el = document.getElementById('tickerScroll');
+  el.innerHTML = '';
+  Object.values(ASSETS).forEach(a => {
+    const d = a.data;
+    const last = d[d.length-1], prev = d[d.length-2];
+    const chg = last.c - prev.c, pct = (chg/prev.c*100).toFixed(2);
+    const up = chg >= 0;
+    const div = document.createElement('div');
+    div.className = 't-pill' + (a.id===curAsset?' active':'');
+    div.id = 'tp_'+a.id;
+    div.innerHTML = `<span class="tp-icon">${a.emoji}</span>
+      <span class="tp-sym" style="color:${a.color}">${a.name.split(' ').pop()}</span>
+      <span class="tp-price">${fmt(last.c)}₫</span>
+      <span class="tp-chg ${up?'up':'down'}">${up?'+':''}${pct}%</span>`;
+    div.onclick = () => switchAsset(a.id);
+    el.appendChild(div);
+  });
+}
+
+// ═══════════════════════════════════════════════════
+//  SIDEBAR
+// ═══════════════════════════════════════════════════
+function buildSidebar() {
+  const el = document.getElementById('sidebar');
+  let html = '<div class="sb-hd">Danh sách</div>';
+  Object.values(ASSETS).forEach(a => {
+    const d = a.data, last = d[d.length-1], prev = d[d.length-2];
+    const chg = last.c - prev.c, pct = (chg/prev.c*100).toFixed(2);
+    const up = chg >= 0;
+    html += `<div class="sb-item${a.id===curAsset?' active':''}" id="si_${a.id}" onclick="switchAsset('${a.id}')">
+      <span class="sb-emoji">${a.emoji}</span>
+      <div class="sb-info">
+        <div class="sb-name">${a.name}</div>
+        <div class="sb-sub">${a.unit}</div>
+      </div>
+      <div class="sb-nums">
+        <div class="sb-price" style="color:${a.color}">${fmt(last.c)}</div>
+        <div class="sb-pct ${up?'up':'down'}">${up?'+':''}${pct}%</div>
+      </div>
+    </div><div class="sb-divider"></div>`;
+  });
+  el.innerHTML = html;
+}
+
+// ═══════════════════════════════════════════════════
+//  RIGHT PANEL
+// ═══════════════════════════════════════════════════
+function buildRPanel() {
+  const a = ASSETS[curAsset];
+  const all = a.data;
+  const last = all[all.length-1];
+  const closes = all.map(x=>x.c);
+  const hi52 = Math.max(...closes), lo52 = Math.min(...closes);
+  const avg = Math.round(closes.reduce((s,v)=>s+v,0)/closes.length);
+  const vol7 = all.slice(-7).reduce((s,d)=>s+d.v,0);
+
+  const stats = [
+    ['Mở',   fmt(last.o)+'₫'],
+    ['Cao',  fmt(last.h)+'₫'],
+    ['Thấp', fmt(last.l)+'₫'],
+    ['Đóng', fmt(last.c)+'₫'],
+    ['TB365',fmt(avg)+'₫'],
+    ['52W↑', fmt(hi52)+'₫'],
+    ['52W↓', fmt(lo52)+'₫'],
+    ['KL7N', vol7+' thùng'],
+  ];
+
+  let html = '<div class="rp-hd">Thống kê</div>';
+  stats.forEach(([k,v]) => {
+    html += `<div class="rp-row"><span class="rp-k">${k}</span><span class="rp-v">${v}</span></div>`;
+  });
+  html += `<div class="rp-hd" style="margin-top:8px">Hãng</div>`;
+  const info = {
+    rice:    [['Loại','ST25'],['Vùng','Sóc Trăng'],['Kho','Đồng Bằng']],
+    saigon:  [['Hãng','Sabeco'],['Độ cồn','4.9%'],['Xuất xứ','Sài Gòn']],
+    larue:   [['Hãng','Heineken VN'],['Độ cồn','4.6%'],['Xuất xứ','Đà Nẵng']],
+    huda:    [['Hãng','Sabeco'],['Độ cồn','4.7%'],['Xuất xứ','Huế']],
+    heineken:[['Hãng','Heineken'],['Độ cồn','5.0%'],['Xuất xứ','HN/HCM']],
+  }[curAsset]||[];
+  info.forEach(([k,v]) => {
+    html += `<div class="rp-row"><span class="rp-k">${k}</span><span class="rp-v">${v}</span></div>`;
+  });
+
+  html += `<div class="rp-spark-wrap"><div class="rp-spark-lbl">14 ngày gần nhất</div><canvas id="sparkC" height="48" style="width:100%;display:block"></canvas></div>`;
+
+  document.getElementById('rpanel').innerHTML = html;
+
+  setTimeout(() => {
+    const sc = document.getElementById('sparkC');
+    if (!sc) return;
+    sc.width = sc.parentElement.offsetWidth - 0;
+    const pts = all.slice(-14).map(x=>x.c);
+    const ctx = sc.getContext('2d'), w=sc.width, h=sc.height;
+    const mn=Math.min(...pts), mx=Math.max(...pts);
+    const x = i => i/(pts.length-1)*(w-2)+1;
+    const y = v => h-2-(v-mn)/(mx-mn||1)*(h-4);
+    const g = ctx.createLinearGradient(0,0,0,h);
+    g.addColorStop(0, a.color+'44');
+    g.addColorStop(1,'transparent');
+    ctx.beginPath();
+    pts.forEach((v,i)=> i===0 ? ctx.moveTo(x(i),y(v)) : ctx.lineTo(x(i),y(v)));
+    ctx.strokeStyle = a.color; ctx.lineWidth=1.5; ctx.stroke();
+    ctx.lineTo(w,h); ctx.lineTo(0,h); ctx.closePath();
+    ctx.fillStyle=g; ctx.fill();
+  },40);
+}
+
+// ═══════════════════════════════════════════════════
+//  CANDLESTICK RENDERER (pure canvas, no lib)
+// ═══════════════════════════════════════════════════
+let hoverIdx = -1;
+
+function drawCharts() {
+  const a     = ASSETS[curAsset];
+  const data  = getSlice(curAsset, curTF);
+  const n     = data.length;
+
+  // toolbar update
+  document.getElementById('ctEmoji').textContent = a.emoji;
+  document.getElementById('ctName').textContent  = a.name;
+  document.getElementById('ctUnit').textContent  = a.unit;
+  const last = a.data[a.data.length-1];
+  const prev = a.data[a.data.length-2];
+  const chgAbs = last.c - prev.c;
+  const chgPct = (chgAbs/prev.c*100).toFixed(2);
+  const up = chgAbs >= 0;
+  document.getElementById('ctPrice').textContent = fmt(last.c)+'₫';
+  document.getElementById('ctPrice').style.color = up ? 'var(--green)' : 'var(--red)';
+  document.getElementById('ctChg').textContent = `${up?'+':''}${fmt(chgAbs)} (${up?'+':''}${chgPct}%)`;
+  document.getElementById('ctChg').className = 'ct-chg '+(up?'up':'down');
+  document.getElementById('stCandles').textContent = n+' nến';
+
+  // sizing
+  const wrap  = document.getElementById('candleWrap');
+  const W = wrap.clientWidth;
+  const H = wrap.clientHeight;
+  const cc = document.getElementById('candleCanvas');
+  cc.width = W; cc.height = H;
+
+  const volWrap = document.getElementById('volWrap');
+  const vc = document.getElementById('volCanvas');
+  vc.width = W; vc.height = volWrap.clientHeight;
+
+  const ctx  = cc.getContext('2d');
+  const vctx = vc.getContext('2d');
+
+  const PAD_L = 10, PAD_R = 56, PAD_T = 16, PAD_B = 24;
+  const cW = W - PAD_L - PAD_R;
+  const cH = H - PAD_T - PAD_B;
+
+  // price range
+  let hiP = -Infinity, loP = Infinity;
+  data.forEach(d => { hiP = Math.max(hiP, d.h); loP = Math.min(loP, d.l); });
+  const range = hiP - loP || 1;
+  const hiPad = hiP + range * 0.05, loPad = loP - range * 0.05;
+  const priceRange = hiPad - loPad;
+  const py = v => PAD_T + (1 - (v - loPad) / priceRange) * cH;
+
+  // candle width
+  const totalW = cW / n;
+  const candleW = Math.max(Math.min(totalW * 0.65, 18), 2);
+  const cx = i => PAD_L + (i + 0.5) * totalW;
+
+  // ── GRID ──
+  ctx.clearRect(0,0,W,H);
+  ctx.strokeStyle = 'rgba(255,255,255,0.04)';
+  ctx.lineWidth = 1;
+  const ticks = 6;
+  for (let i=0; i<=ticks; i++) {
+    const price = loPad + (priceRange * i / ticks);
+    const y = py(price);
+    ctx.beginPath(); ctx.moveTo(PAD_L, y); ctx.lineTo(W-PAD_R, y); ctx.stroke();
+    ctx.fillStyle = 'rgba(138,128,112,0.7)';
+    ctx.font = '10px IBM Plex Mono';
+    ctx.textAlign = 'left';
+    ctx.fillText(fmt(Math.round(price)), W-PAD_R+4, y+3);
+  }
+
+  // vertical grid (dates)
+  const labelStep = Math.max(1, Math.floor(n / 8));
+  ctx.fillStyle = 'rgba(138,128,112,0.6)';
+  ctx.font = '9px IBM Plex Mono';
+  ctx.textAlign = 'center';
+  data.forEach((d,i) => {
+    if (i % labelStep === 0) {
+      const x = cx(i);
+      ctx.beginPath();
+      ctx.strokeStyle = 'rgba(255,255,255,0.025)';
+      ctx.moveTo(x, PAD_T); ctx.lineTo(x, H-PAD_B); ctx.stroke();
+      ctx.fillStyle = 'rgba(138,128,112,0.6)';
+      ctx.fillText(fmtD(d.t), x, H-PAD_B+14);
+    }
+  });
+
+  // ── CANDLES ──
+  data.forEach((d, i) => {
+    const x   = cx(i);
+    const isUp = d.c >= d.o;
+    const col  = isUp ? 'var(--green)' : 'var(--red)';
+    const topBody = py(Math.max(d.o, d.c));
+    const botBody = py(Math.min(d.o, d.c));
+    const bodyH   = Math.max(botBody - topBody, 1.5);
+
+    // hover highlight
+    if (i === hoverIdx) {
+      ctx.fillStyle = 'rgba(255,255,255,0.04)';
+      ctx.fillRect(x - totalW/2, PAD_T, totalW, cH);
+    }
+
+    // wick
+    ctx.strokeStyle = isUp ? '#1a7a6e' : '#8a2a2a';
+    ctx.lineWidth = 1;
+    ctx.beginPath();
+    ctx.moveTo(x, py(d.h)); ctx.lineTo(x, py(d.l));
+    ctx.stroke();
+
+    // body
+    ctx.fillStyle = isUp ? '#26a47a' : '#c03535';
+    if (isUp) {
+      ctx.strokeStyle = '#2dba8c';
+    } else {
+      ctx.strokeStyle = '#e84545';
+    }
+    ctx.lineWidth = candleW < 4 ? 0 : 1;
+    const bx = x - candleW/2;
+    ctx.fillRect(bx, topBody, candleW, bodyH);
+    if (candleW >= 4) ctx.strokeRect(bx, topBody, candleW, bodyH);
+  });
+
+  // ── HOVER CROSSHAIR ──
+  if (hoverIdx >= 0 && hoverIdx < n) {
+    const d = data[hoverIdx];
+    const x = cx(hoverIdx);
+    const y = py(d.c);
+
+    ctx.strokeStyle = 'rgba(240,165,0,0.4)';
+    ctx.lineWidth = 1;
+    ctx.setLineDash([4,4]);
+    ctx.beginPath(); ctx.moveTo(PAD_L,y); ctx.lineTo(W-PAD_R,y); ctx.stroke();
+    ctx.beginPath(); ctx.moveTo(x,PAD_T); ctx.lineTo(x,H-PAD_B); ctx.stroke();
+    ctx.setLineDash([]);
+
+    // price label
+    ctx.fillStyle = '#f0a500';
+    ctx.fillRect(W-PAD_R+2, y-8, PAD_R-2, 16);
+    ctx.fillStyle = '#000';
+    ctx.font = '9px IBM Plex Mono';
+    ctx.textAlign = 'left';
+    ctx.fillText(fmt(d.c), W-PAD_R+4, y+3);
+
+    // ohlc
+    document.getElementById('oO').textContent = fmt(d.o);
+    document.getElementById('oH').textContent = fmt(d.h);
+    document.getElementById('oL').textContent = fmt(d.l);
+    document.getElementById('oC').textContent = fmt(d.c);
+    document.getElementById('oV').textContent = d.v+' thùng';
+    document.getElementById('oDate').textContent = fmtDL(d.t);
+    document.getElementById('oC').style.color = d.c>=d.o ? 'var(--green)' : 'var(--red)';
+  } else {
+    // default to last
+    const d = data[n-1];
+    document.getElementById('oO').textContent = fmt(d.o);
+    document.getElementById('oH').textContent = fmt(d.h);
+    document.getElementById('oL').textContent = fmt(d.l);
+    document.getElementById('oC').textContent = fmt(d.c);
+    document.getElementById('oV').textContent = d.v+' thùng';
+    document.getElementById('oDate').textContent = fmtDL(d.t);
+  }
+
+  // ── VOLUME BARS ──
+  vctx.clearRect(0,0,W,vc.height);
+  const maxVol = Math.max(...data.map(d=>d.v));
+  const VH = vc.height - 4;
+  data.forEach((d,i) => {
+    const x  = cx(i);
+    const bh = (d.v / maxVol) * VH;
+    const isUp = d.c >= d.o;
+    vctx.fillStyle = isUp ? 'rgba(45,186,140,0.5)' : 'rgba(232,69,69,0.45)';
+    vctx.fillRect(x - candleW/2, vc.height - bh, candleW, bh);
+  });
+}
+
+// ═══════════════════════════════════════════════════
+//  MOUSE INTERACTION
+// ═══════════════════════════════════════════════════
+function setupMouse() {
+  const cc = document.getElementById('candleCanvas');
+  cc.addEventListener('mousemove', e => {
+    const data  = getSlice(curAsset, curTF);
+    const wrap  = document.getElementById('candleWrap');
+    const W     = wrap.clientWidth;
+    const PAD_L = 10, PAD_R = 56;
+    const cW    = W - PAD_L - PAD_R;
+    const n     = data.length;
+    const totalW = cW / n;
+    const rect  = cc.getBoundingClientRect();
+    const mx    = e.clientX - rect.left - PAD_L;
+    const i     = Math.round(mx / totalW - 0.5);
+    const newIdx = Math.max(0, Math.min(n-1, i));
+    if (newIdx !== hoverIdx) { hoverIdx = newIdx; drawCharts(); }
+  });
+  cc.addEventListener('mouseleave', () => { hoverIdx=-1; drawCharts(); });
+}
+
+// ═══════════════════════════════════════════════════
+//  ACTIONS
+// ═══════════════════════════════════════════════════
+function switchAsset(id) {
+  curAsset = id;
+  hoverIdx = -1;
+  buildTicker();
+  buildSidebar();
+  buildRPanel();
+  drawCharts();
+  document.getElementById('wmText').textContent = {
+    rice:'GẠO ST25', saigon:'SÀI GÒN', larue:'LA RUE', huda:'HUẾ', heineken:'HÀ NỘI'
+  }[id]||'SÀI GÒN';
+}
+
+function setTF(btn, tf) {
+  curTF = tf;
+  hoverIdx = -1;
+  document.querySelectorAll('.tf-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  drawCharts();
+}
+
+// ═══════════════════════════════════════════════════
+//  CLOCK + LIVE TICK
+// ═══════════════════════════════════════════════════
+function tick() {
+  const t = new Date().toLocaleTimeString('vi-VN');
+  document.getElementById('hdrTime').textContent = t;
+  document.getElementById('stTime').textContent  = t;
+}
+tick();
+setInterval(tick, 1000);
+
+// simulate small price changes every 4s
+setInterval(() => {
+  Object.values(ASSETS).forEach(a => {
+    const d = a.data, last = d[d.length-1];
+    const jitter = (Math.random()-.5) * (a.id==='rice'?60:40);
+    const newClose = Math.max(last.c + jitter, 500);
+    d[d.length-1] = { ...last, c: Math.round(newClose), h: Math.max(last.h, newClose), l: Math.min(last.l, newClose) };
+  });
+  buildTicker();
+  buildSidebar();
+  if (hoverIdx < 0) drawCharts();
+}, 4000);
+
+// ═══════════════════════════════════════════════════
+//  INIT
+// ═══════════════════════════════════════════════════
+buildTicker();
+buildSidebar();
+buildRPanel();
+drawCharts();
+setupMouse();
+window.addEventListener('resize', () => { drawCharts(); });
+</script>
+</body>
+</html>
