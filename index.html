@@ -1182,6 +1182,50 @@ body.tb-lock{ overflow:hidden; }
 @media (pointer:coarse){
   .tab, .mode-btn, .dtv-pill, .khuon-pill, .page-turn-btn, .tb-btns button{ min-height:40px; }
 }
+
+/* ════════════ MÀU ĐẮC ĐỊA / HÃM (Ngũ Hành + Vượng·Tướng·Hưu·Tù·Tử) ════════════ */
+[data-hanh=moc]{--hc:#2ECC71;--hb:#d9f1e2}
+[data-hanh=hoa]{--hc:#E74C3C;--hb:#fbdfda}
+[data-hanh=tho]{--hc:#F1C40F;--hb:#faefc4}
+[data-hanh=kim]{--hc:#9fadb4;--hb:#e8ecee}
+[data-hanh=thuy]{--hc:#3498DB;--hb:#d8e9f8}
+.grid-cell[data-hanh]{border-left:5px solid var(--hc);background:linear-gradient(135deg,var(--hb),var(--paper-2) 90%)}
+.hanh-tag{font-family:'JetBrains Mono',monospace;font-size:.62rem;font-weight:400;letter-spacing:.06em;color:var(--ink-soft);margin-left:6px}
+.st{display:inline-flex;align-items:center;gap:4px;padding:1px 7px 1px 5px;margin:1px 3px 1px 0;border-radius:999px;border:1.5px solid;font-weight:600;line-height:1.35;white-space:nowrap;letter-spacing:normal;text-transform:none;cursor:help}
+.st-dot{display:inline-block;width:8px;height:8px;border-radius:50%;border:1px solid rgba(0,0,0,.4);flex:none}
+.st-g{font-size:.8em;font-weight:700}
+.st-vuong{background:#c4f5d3;border:2px solid #0f9d58;color:#0a5a2d;box-shadow:0 0 0 2px rgba(15,157,88,.22),0 0 9px rgba(0,200,83,.6)}
+.st-tuong{background:#e2f6e8;border-color:#4cb871;color:#1d6a38}
+.st-huu{background:#fdf1cc;border-color:#d9a21b;color:#775504;opacity:.92}
+.st-tu{background:#fde4d0;border-color:#e0771c;border-style:dashed;color:#8a4210}
+.st-chet{background:repeating-linear-gradient(135deg,#f8d0cb 0 5px,#f3bdb6 5px 10px);border:2px solid #c0392b;color:#8e1b10}
+.dc-box{margin:16px 0 0;padding:10px 12px;border:1px solid var(--rule);border-radius:4px;background:var(--paper);font-size:.8rem}
+.dc-row{display:flex;flex-wrap:wrap;align-items:center;gap:2px 0;margin:3px 0}
+.dc-k{font-family:'Noto Serif Display',serif;font-weight:700;min-width:92px;margin-right:8px}
+.dc-k small{font-family:'JetBrains Mono',monospace;font-weight:400;opacity:.7}
+.dc-good{color:#0f7a43}.dc-mid{color:#8a6508}.dc-bad{color:#b3321f}
+.dc-none{color:var(--ink-soft)}
+.dc-legend{display:flex;flex-wrap:wrap;gap:4px 14px;margin-top:8px;padding-top:8px;border-top:1px dashed var(--rule);font-size:.72rem;color:var(--ink-soft)}
+.dc-li{display:inline-flex;align-items:center;gap:4px}
+.dc-hanhrow{margin-top:6px;font-size:.72rem;color:var(--ink-soft);display:flex;flex-wrap:wrap;gap:4px 6px;align-items:center}
+.dc-hn{border-left:5px solid var(--hc);background:var(--hb);padding:1px 8px;border-radius:2px;color:var(--ink);font-weight:600}
+.tb-legend{display:flex;flex-direction:column;gap:3px;margin:0 0 10px;font-size:.74rem;color:var(--ink-soft)}
+.tb-verdict{margin-top:6px;font-size:.8rem;opacity:.85}.bal-box{border:1px solid var(--seal,#c08a3a);border-radius:6px;padding:7px 9px;margin:4px 0 8px;font-size:.82rem;line-height:1.5}.bal-box small{display:block;opacity:.7;margin-top:3px}.an-sub{opacity:.8;margin-top:12px}.an-h small{font-weight:400;opacity:.7}
+.tb-verdict .dc-row{margin:4px 0}.tb-verdict .dc-k{min-width:0;font-size:.78rem}
+@media (max-width:640px){.st{padding:0 4px;gap:2px;margin:1px 2px 1px 0}.st-dot{width:6px;height:6px}.dc-k{min-width:76px}}
+@keyframes an-pulse{from{opacity:.25}to{opacity:1}}
+@keyframes an-flow{to{stroke-dashoffset:-24}}
+.an-pulse{animation:an-pulse 1.2s ease-in-out infinite alternate}
+.an-dash{animation:an-flow 1s linear infinite}
+@media (prefers-reduced-motion:reduce){.an-pulse,.an-dash{animation:none}}
+.an-h{font-family:'Noto Serif Display',serif;font-weight:700;font-size:.85rem;margin:12px 0 4px;color:var(--seal)}
+.an-item{border-left:4px solid;padding:3px 8px;margin:4px 0;background:var(--paper);font-size:.8rem;border-radius:2px}
+.an-item small{display:block;color:var(--ink-soft);font-family:'JetBrains Mono',monospace;font-size:.68rem}
+.an-banner{background:linear-gradient(90deg,#5b1f4f,#8e1b10);color:#fff;font-weight:700;font-size:.74rem;letter-spacing:.04em;text-align:center;padding:6px 8px;border-radius:3px;margin:6px 0}
+.an-btn{display:block;width:100%;text-align:left;font:inherit;color:inherit;cursor:pointer;border:0;border-left:4px solid;position:relative;padding-left:32px}
+.an-n{position:absolute;left:6px;top:6px;width:18px;height:18px;border-radius:50%;color:#fff;font-style:normal;font-size:.7rem;font-weight:700;display:flex;align-items:center;justify-content:center}
+.an-btn.on{background:#fff;box-shadow:0 0 0 2px var(--ink)}
+.an-d{display:block;margin-top:3px;font-style:normal;font-size:.76rem;color:var(--ink)}
 </style>
 </head>
 <body>
@@ -1846,17 +1890,86 @@ function renderMeta(result){
   strip.classList.add('show');
 }
 
-function buildGridCell(lines){
-  const cell = document.createElement('div');
-  cell.className = 'grid-cell';
-  (lines || []).forEach((line, i)=>{
-    const div = document.createElement('div');
-    div.className = i === 0 ? 'cell-label' : 'cell-line';
-    if (i === 0) {
-      div.textContent = line;
-    } else {
-      div.innerHTML = annotateGlossaryTerms(line);
-    }
+
+/* ════════════════════ MÀU ĐẮC ĐỊA / HÃM ════════════════════ */
+const HANH_HEX={Mộc:'#2ECC71',Hỏa:'#E74C3C',Thổ:'#F1C40F',Kim:'#ECF0F1',Thủy:'#3498DB'};
+const HANH_SLUG={Mộc:'moc',Hỏa:'hoa',Thổ:'tho',Kim:'kim',Thủy:'thuy'};
+const SINH={Mộc:'Hỏa',Hỏa:'Thổ',Thổ:'Kim',Kim:'Thủy',Thủy:'Mộc'};
+const KHAC={Mộc:'Thổ',Thổ:'Thủy',Thủy:'Hỏa',Hỏa:'Kim',Kim:'Mộc'};
+const CUNG_HANH_KEY={ty:'Thủy',suu:'Thổ',can:'Thổ',dan:'Mộc',mao:'Mộc',thin:'Thổ',ton:'Mộc',ti:'Hỏa',ngo:'Hỏa',vi:'Thổ',khon:'Thổ',than:'Kim',dau:'Kim',tuat:'Thổ',kien:'Kim',hoi:'Thủy',center:'Thổ'};
+const TRANG_THAI={
+ vuong:{ten:'Vượng',g:'★',nhom:'good',diem:2,mau:'#22ff7a',nen:'rgba(34,255,122,.22)',sw:3.2,glow:1,mota:'cùng hành với cung — đắc địa tối đa'},
+ tuong:{ten:'Tướng',g:'▲',nhom:'good',diem:1,mau:'#4ade80',nen:'rgba(74,222,128,.12)',sw:2.2,mota:'cung sinh sao — được nâng đỡ, đắc địa'},
+ huu:{ten:'Hưu',g:'○',nhom:'mid',diem:0,mau:'#f5b301',nen:'none',sw:1.8,mota:'sao sinh cung — tiết khí, lực yếu'},
+ tu:{ten:'Tù',g:'▼',nhom:'bad',diem:-1,mau:'#ff8a1f',nen:'none',sw:2.2,dash:'3.5 2.5',mota:'sao khắc cung — hao lực, bị giam hãm'},
+ chet:{ten:'Tử',g:'✕',nhom:'bad',diem:-2,mau:'#ff3b30',nen:'rgba(255,59,48,.28)',sw:2.8,mota:'cung khắc sao — bị đè nén, hãm nặng'}};
+function trangThai(hs,hc){
+  if(hs===hc)return 'vuong'; if(SINH[hc]===hs)return 'tuong'; if(SINH[hs]===hc)return 'huu';
+  if(KHAC[hs]===hc)return 'tu'; return 'chet';
+}
+// Hành của sao theo bảng quy chuẩn; Thần Hợp chưa có hành trong bảng nên không tô trạng thái.
+const SAO_DEF=[
+ {ten:'Thái Ất',h:'Mộc',v:['ất cả','thái ất','tiểu du']},
+ {ten:'Văn Xương',h:'Thổ',v:['bài văn','văn xương']},
+ {ten:'Thủy Kích',h:'Hỏa',v:['mới kích','thủy kích']},
+ {ten:'Kế Thần',h:'Thổ',v:['thần kể','kể thần','kế thần','thần kế']},
+ {ten:'Chủ Đại Tướng',h:'Kim',v:['đại chủ']},
+ {ten:'Chủ Tham Tướng',h:'Thủy',v:['tham chủ']},
+ {ten:'Khách Đại Tướng',h:'Thủy',v:['đại khách']},
+ {ten:'Khách Tham Tướng',h:'Mộc',v:['tham khách','khách tham']},
+ {ten:'Thiên Ất',h:'Kim',v:['thiên ất']},{ten:'Địa Ất',h:'Thổ',v:['địa ất']},
+ {ten:'Trực Phù',h:'Hỏa',v:['trực phù']},{ten:'Phi Phù',h:'Hỏa',v:['phi phù']},
+ {ten:'Tứ Thần',h:'Thủy',v:['tứ thần']},{ten:'Ngũ Phúc',h:'Thổ',v:['ngũ phúc']},
+ {ten:'Quân Cơ',h:'Thổ',v:['quân cơ']},{ten:'Thần Cơ',h:'Thổ',v:['thần cơ']},{ten:'Dân Cơ',h:'Thổ',v:['dân cơ']}];
+const HANH_BY_TEN={};SAO_DEF.forEach(d=>HANH_BY_TEN[d.ten]=d.h);
+function findSao(line){
+  const low=(line||'').normalize('NFC').toLowerCase(),ms=[];
+  SAO_DEF.forEach(d=>d.v.forEach(v=>{let p=0;for(;;){const i=low.indexOf(v,p);if(i<0)break;ms.push({s:i,e:i+v.length,d});p=i+v.length}}));
+  ms.sort((a,b)=>a.s-b.s||(b.e-b.s)-(a.e-a.s));
+  const keep=[];let end=-1;ms.forEach(m=>{if(m.s>=end){keep.push(m);end=m.e}});
+  return keep;
+}
+function chipSao(d,hc,label,cung,t){
+  t=t||trangThai(d.h,hc);const T=TRANG_THAI[t];
+  return `<span class="st st-${t}" title="${d.ten} (${d.h}) tại ${cung} (${hc}) → ${T.ten}: ${T.mota}"><i class="st-dot" style="background:${HANH_HEX[d.h]}"></i>${annotateGlossaryTerms(label)}<b class="st-g">${T.g}</b></span>`;
+}
+function renderLineSao(line,hc,cung){
+  const ms=hc?findSao(line):[];
+  if(!ms.length)return annotateGlossaryTerms(line);
+  const L=line.normalize('NFC');let out='',cur=0;
+  ms.forEach(m=>{if(m.s>cur)out+=annotateGlossaryTerms(L.slice(cur,m.s));out+=chipSao(m.d,hc,L.slice(m.s,m.e),cung);cur=m.e});
+  if(cur<L.length)out+=annotateGlossaryTerms(L.slice(cur));
+  return out;
+}
+function buildSaoSummary(entry){
+  const seen=new Set(),g=[],m=[],b=[];
+  Object.entries(entry.grid).forEach(([k,lines])=>{
+    const hc=CUNG_HANH_KEY[k];if(!hc||!lines)return;
+    const cn=k==='center'?'Trung Cung':lines[0];
+    lines.slice(k==='center'?0:1).forEach(l=>findSao(l).forEach(x=>{
+      const id=x.d.ten+'|'+cn;if(seen.has(id))return;seen.add(id);
+      const t=trangThai(x.d.h,hc),nh=TRANG_THAI[t].nhom;
+      (nh==='good'?g:nh==='mid'?m:b).push(chipSao(x.d,hc,`${x.d.ten} · ${cn}`,cn,t));
+    }));
+  });
+  const row=(c,l,a)=>`<div class="dc-row"><span class="dc-k ${c}">${l} <small>${a.length}</small></span>${a.join('')||'<span class="dc-none">—</span>'}</div>`;
+  const leg=Object.entries(TRANG_THAI).map(([t,T])=>`<span class="dc-li"><span class="st st-${t}"><b class="st-g">${T.g}</b>${T.ten}</span>${T.mota}</span>`).join('');
+  const hl=Object.keys(HANH_HEX).map(h=>`<span class="dc-hn" data-hanh="${HANH_SLUG[h]}">${h}</span>`).join('');
+  const d=document.createElement('div');d.className='dc-box';
+  d.innerHTML=row('dc-good','Đắc địa',g)+row('dc-mid','Bình (Hưu)',m)+row('dc-bad','Hãm',b)+`<div class="dc-legend">${leg}</div><div class="dc-hanhrow">Nền ô theo hành của cung: ${hl}<span>· chấm màu trên sao = hành của sao</span></div>`;
+  return d;
+}
+function buildGridCell(lines,key){
+  const cell=document.createElement('div');
+  cell.className='grid-cell';
+  const hc=CUNG_HANH_KEY[key];
+  if(hc)cell.dataset.hanh=HANH_SLUG[hc];
+  const cn=(lines&&lines[0])||'';
+  (lines||[]).forEach((line,i)=>{
+    const div=document.createElement('div');
+    div.className=i===0?'cell-label':'cell-line';
+    if(i===0){div.textContent=line;if(hc){const t=document.createElement('span');t.className='hanh-tag';t.textContent=hc;div.appendChild(t)}}
+    else div.innerHTML=renderLineSao(line,hc,cn);
     cell.appendChild(div);
   });
   return cell;
@@ -1868,7 +1981,7 @@ const buildThienBan = (function(){
   const KEYS=['ty','suu','can','dan','mao','thin','ton','ti','ngo','vi','khon','than','dau','tuat','kien','hoi'];
   const CUNG=[['Tý','Thủy'],['Sửu','Thổ'],['CẤN','Thổ'],['Dần','Mộc'],['Mão','Mộc'],['Thìn','Thổ'],['TỐN','Mộc'],['Tị','Hỏa'],
     ['Ngọ','Hỏa'],['Mùi','Thổ'],['KHÔN','Thổ'],['Thân','Kim'],['Dậu','Kim'],['Tuất','Thổ'],['KIỀN','Kim'],['Hợi','Thủy']];
-  const EL={Thủy:'#4a7fb5',Thổ:'#b58a4a',Mộc:'#4f9a68',Hỏa:'#c4553f',Kim:'#c9c9bd'};
+  const EL=HANH_HEX;
   const THANG={0:11,1:12,3:1,4:2,5:3,7:4,8:5,9:6,11:7,12:8,13:9,15:10};
   // Lục Hợp: Tý–Sửu, Dần–Hợi, Mão–Tuất, Thìn–Dậu, Tị–Thân, Ngọ–Mùi (theo chỉ số cung trên Địa Bàn 16 cung)
   const LUC_HOP={0:1,1:0,3:15,15:3,4:13,13:4,5:12,12:5,7:11,11:7,8:9,9:8};
@@ -1931,18 +2044,20 @@ const buildThienBan = (function(){
         <button data-a="rs" style="grid-column:1/-1">Về vị trí gốc của cục</button></div>
         <label class="tb-chk"><input type="checkbox" class="tb-snap" checked> Tự khớp vào cung khi thả chuột</label>
         <label class="tb-chk"><input type="checkbox" class="tb-extra" checked> Hiện 4 sao: Thiên Ất · Địa Ất · Trực Phù · Tứ Thần</label>
-        <p class="tb-ang"></p><table class="tb-tbl"></table><div class="tb-msg"></div>
-        <p class="tb-hint">Tia vàng: Thần Hợp → chi ${lv.from} ${CUNG[tue][0]}. Tia đỏ: Văn Xương → cung đối xung. Cung đỏ rực: Thủy Kích đồng cung Thái Ất. Hình thoi: Thiên Ất, Địa Ất, Trực Phù, Tứ Thần.</p></div></div>`;
+        <div class="tb-legend">${Object.entries(TRANG_THAI).map(([t,T])=>`<span><span class="st st-${t}"><b class="st-g">${T.g}</b>${T.ten}</span> ${T.mota}</span>`).join('')}</div><p class="tb-ang"></p><table class="tb-tbl"></table><div class="an-h">Án Không Gian <small>(chính)</small></div><div class="tb-bal"></div><div class="tb-an"></div><div class="an-h an-sub">Ngũ hành sao–cung <small>(phụ · bảng của app, không phải của sách)</small></div><div class="tb-verdict"></div><div class="an-h">Kiểm tra 4 Tướng</div><div class="tb-gen"></div><div class="tb-msg"></div>
+        <p class="tb-hint">Tia vàng: Thần Hợp → chi ${lv.from} ${CUNG[tue][0]}. Tia đỏ: Văn Xương → cung đối xung. Cung đỏ rực: Thủy Kích đồng cung Thái Ất. Hình thoi: Thiên Ất, Địa Ất, Trực Phù, Tứ Thần. Vòng + ký hiệu quanh mỗi sao và dải viền mờ ngoài mỗi cung (xanh = đắc địa, đỏ = hãm, vàng = cân bằng) là ngũ hành — chỉ là tín hiệu phụ: theo sách, kết luận chính dựa vào Án Không Gian và Toán, ngũ hành chỉ phân xử cuối khi hai bên ngang nhau. Thần Hợp chưa có hành trong bảng nên không tô trạng thái.</p></div></div>`;
     const svg=wrap.querySelector('svg'),q=s=>wrap.querySelector(s);
     const el=(t,a,p)=>{const e=document.createElementNS(NS,t);for(const k in a)e.setAttribute(k,a[k]);(p||svg).appendChild(e);return e};
 
-    el('circle',{cx:CX,cy:CY,r:306,fill:'#050505',stroke:'#2a251c','stroke-width':2});
+    const wd=[];
+    el('circle',{cx:CX,cy:CY,r:314,fill:'#050505',stroke:'#2a251c','stroke-width':2});
     CUNG.forEach((c,i)=>{
-      el('path',{d:wedge(i,240,300),fill:EL[c[1]],'fill-opacity':.16,stroke:'#3a3328'});
+      wd[i]=el('path',{d:wedge(i,240,300),fill:EL[c[1]],'fill-opacity':.27,stroke:EL[c[1]],'stroke-opacity':.5});
       const p=P(270,i*STEP),big=c[0]===c[0].toUpperCase();
       el('text',{x:f(p[0]),y:f(p[1]),'text-anchor':'middle','dominant-baseline':'central','font-size':big?15:17,fill:big?'#d4a843':'#eadfc8','font-weight':big?600:400}).textContent=c[0];
       const o=P(250,i*STEP);el('text',{x:f(o[0]),y:f(o[1]),'text-anchor':'middle','dominant-baseline':'central','font-size':8,fill:EL[c[1]]}).textContent=c[1];
     });
+    const verd=CUNG.map((c,i)=>el('path',{d:wedge(i,302,310),fill:'#2a251c','fill-opacity':.5}));
     const glow=el('path',{d:'',fill:'#ff2a10','fill-opacity':0,stroke:'#ff2a10','stroke-width':0});
     const tb=el('g',{});
     el('circle',{cx:CX,cy:CY,r:235,fill:'#6b4a1d','fill-opacity':.42,stroke:'#c08a3a','stroke-width':3},tb);
@@ -1967,12 +2082,32 @@ const buildThienBan = (function(){
     const tuyetSent=sent.filter(x=>/khí tuyệt/.test(x)).map(x=>x.trim());
     const toan=(entry.grid.center||[]).join(' ').toLowerCase();
     const tn=n=>{const m=toan.match(new RegExp('toán\\s*'+n+'\\s*:?\\s*(\\d+)'));return m?m[1]:null};
-    const ng={},lb={},act=NODES.filter(n=>pos0[n.k]),plate=act.filter(n=>!pos0[n.k].center);
-    plate.forEach(n=>{const g=el('g',{});
+    /* ── KIỂM TRA 4 TƯỚNG theo công thức Toán (Văn Xương/Thủy Kích → kề giáp Thái Ất) ── */
+    {const BSI={0:8,2:3,4:4,6:9,8:2,10:7,12:6,14:1},CI={};Object.keys(BSI).forEach(i=>CI[BSI[i]]=+i);
+     const ctr=(entry.grid.center||[]).join(' ').toLowerCase(),out=[],ta=pos0.TA&&pos0.TA.cung>=0?pos0.TA.cung:-1;
+     const calc=(a,b)=>{let t=BSI[a]||1;if(a!==b)for(let c=(a+1)%16;c!==b;c=(c+1)%16)t+=BSI[c]||0;return t};
+     const lg=t=>t%10||Math.floor(t/10);
+     const chip=(k,t)=>{const m={ok:['tuong','✓ khớp'],bad:['chet','✗ lệch'],an:['huu','Vô Tướng'],na:['tu','? thiếu']}[k];return `<span class="st st-${m[0]}">${t||m[1]}</span>`};
+     const row=(t,k,sub)=>`<div class="an-item" style="border-left-color:${k==='bad'?'#c0392b':k==='ok'?'#2ecc71':'#d9a21b'}"><b>${t}</b> ${chip(k)}${sub?`<small>${sub}</small>`:''}</div>`;
+     if(ta<0)out.push('<div class="dc-none">Không xác định được Thái Ất trên 16 cung — bỏ qua kiểm tra.</div>');
+     else{
+      if(BSI[ta]===undefined)out.push(row('Thái Ất ở cung gián '+CUNG[ta][0],'bad','Thái Ất chỉ ngự 8 cung chính — nhiều khả năng lưới bị lệch ô khi số hóa.'));
+      [['Chủ','VX',/đại chủ/,/tham chủ/,/toán\s*chủ\s*[:：]?\s*(\d+)/],['Khách','TK',/đại khách/,/tham khách|khách tham/,/toán\s*khách\s*[:：]?\s*(\d+)/]].forEach(([nm_,sk,rD,rT,rX])=>{
+        const st=pos0[sk];if(!st||st.cung<0){out.push(row('Toán '+nm_,'na','không có '+(sk==='VX'?'Văn Xương':'Thủy Kích')+' trong cung'));return}
+        const T=calc(st.cung,ta),L=lg(T),Tt=(L*3)%10,sach=(ctr.match(rX)||[])[1],sn=sach?+sach:null;
+        out.push(row(`Toán ${nm_}: ${T} → số linh ${L}`,sn===null?'na':sn===T?'ok':lg(sn)===L?'an':'bad',sn===null?'cục không ghi Toán':`sách ghi ${sn}${sn===T?'':lg(sn)===L?' (cùng số linh)':''}`));
+        [['Đại',L,rD],['Tham',Tt,rT]].forEach(([k,sc,re])=>{const g=ex(re),ten=`${nm_==='Chủ'?'Chủ':'Khách'} ${k} Tướng`;
+          if(sc===5){out.push(row(ten+' · số 5 (Trung Cung)',g<0?'an':'bad',g<0?'đúng: không ra cung giữa':'lưới lại ghi ở '+CUNG[g][0]));return}
+          const e_=CI[sc];out.push(row(`${ten} → cung ${sc} (${CUNG[e_][0]})`,g<0?'na':g===e_?'ok':'bad',g<0?'lưới không ghi vị trí':g===e_?'':'lưới ghi ở '+CUNG[g][0]))})});
+     }
+     q('.tb-gen').innerHTML=out.join('')}
+    const ov=el('g',{'pointer-events':'none'});
+    const ng={},lb={},halo={},lbG={},ttl={},act=NODES.filter(n=>pos0[n.k]),plate=act.filter(n=>!pos0[n.k].center);
+    plate.forEach(n=>{const g=el('g',{});halo[n.k]=el('circle',{r:n.extra?14.5:13,fill:'none','stroke-width':0},g);
       if(n.extra)el('path',{d:'M0 -8.5L8.5 0L0 8.5L-8.5 0Z',fill:n.c,stroke:'#fff','stroke-width':1.5},g);
       else el('circle',{r:7.5,fill:n.c,stroke:'#fff','stroke-width':1.5},g);
       lb[n.k]=el('text',{'dominant-baseline':'central','font-size':11.5,fill:n.c,'font-weight':600,stroke:'#0d0c0b','stroke-width':3.5,'paint-order':'stroke','stroke-linejoin':'round','pointer-events':'none'},g);
-      lb[n.k].textContent=n.s;el('title',{},g).textContent=pos0[n.k].ten;ng[n.k]=g});
+      lb[n.k].textContent='';{const t1=document.createElementNS(NS,'tspan');t1.textContent=n.s;lb[n.k].appendChild(t1);lbG[n.k]=document.createElementNS(NS,'tspan');lbG[n.k].setAttribute('font-weight',700);lb[n.k].appendChild(lbG[n.k])}ttl[n.k]=el('title',{},g);ttl[n.k].textContent=pos0[n.k].ten;ng[n.k]=g});
     el('circle',{cx:CX,cy:CY,r:30,fill:'#b8902a',stroke:'#f3d98a','stroke-width':2});
     const cenAct=act.filter(n=>pos0[n.k].center), hasCen=cenAct.length>0;
     el('text',{x:CX,y:CY-(hasCen?9:7),'text-anchor':'middle','dominant-baseline':'central','font-size':hasCen?10:12,fill:'#1a1405','font-weight':600}).textContent='Trung';
@@ -1982,9 +2117,10 @@ const buildThienBan = (function(){
       el('path',{d:'M0 -5.5L5.5 0L0 5.5L-5.5 0Z',fill:n.c,stroke:'#1a1405','stroke-width':1},g);
       el('title',{},g).textContent=pos0[n.k].ten+' (Trung Cung)';ng[n.k]=g});
 
-    let ang=0,raf=0,drag=null;
+    let ang=0,raf=0,drag=null,sel=null;
     const stepNow=()=>Math.round(ang/STEP);
     const pos=k=>pos0[k].center?-1:mod(pos0[k].cung+stepNow(),16);
+    const stOf=k=>{const h=HANH_BY_TEN[pos0[k].ten];if(!h)return null;return trangThai(h,pos0[k].center?'Thổ':CUNG[pos(k)][1])};
     function render(){
       tb.setAttribute('transform',`rotate(${f(ang)} ${CX} ${CY})`);
       const px={};
@@ -1994,6 +2130,86 @@ const buildThienBan = (function(){
         const s=i%2?-1:1,L=lb[n.k];
         if(Math.abs(Math.sin(th*Math.PI/180))<.7){L.setAttribute('x',s*13);L.setAttribute('y',0);L.setAttribute('text-anchor',s>0?'start':'end')}
         else{L.setAttribute('x',0);L.setAttribute('y',s*18);L.setAttribute('text-anchor','middle')}});
+      const sc=new Array(16).fill(0),ct=new Array(16).fill(0),GD=[],MD=[],BD=[];
+      act.forEach(n=>{const t=stOf(n.k),o=pos0[n.k];if(n.extra&&!showX)return;
+        if(t){const T=TRANG_THAI[t],cn=o.center?'Trung Cung':CUNG[pos(n.k)][0];
+          (T.nhom==='good'?GD:T.nhom==='mid'?MD:BD).push(`<span class="st st-${t}"><b class="st-g">${T.g}</b>${o.ten} · ${cn}</span>`);
+          if(!o.center){sc[pos(n.k)]+=T.diem;ct[pos(n.k)]++}}
+        if(o.center)return;const H=halo[n.k],G=lbG[n.k];
+        if(!t){H.setAttribute('stroke-width',0);H.setAttribute('fill','none');G.textContent='';ng[n.k].style.opacity='';return}
+        const T=TRANG_THAI[t];H.setAttribute('stroke',T.mau);H.setAttribute('stroke-width',T.sw);H.setAttribute('fill',T.nen);
+        if(T.dash)H.setAttribute('stroke-dasharray',T.dash);else H.removeAttribute('stroke-dasharray');
+        H.style.filter=T.glow?`drop-shadow(0 0 5px ${T.mau})`:'';G.textContent=' '+T.g;G.setAttribute('fill',T.mau);
+        ng[n.k].style.opacity=t==='chet'?.72:'';
+        ttl[n.k].textContent=`${o.ten} · ${CUNG[pos(n.k)][0]} (${CUNG[pos(n.k)][1]}) → ${T.ten}: ${T.mota}`});
+      verd.forEach((v,i)=>{if(!ct[i]){v.setAttribute('fill','#2a251c');v.setAttribute('fill-opacity',.5)}
+        else{v.setAttribute('fill',sc[i]>0?'#22c55e':sc[i]<0?'#ef4444':'#f5b301');v.setAttribute('fill-opacity',.4)}});
+      const vr=(c,l,a)=>`<div class="dc-row"><span class="dc-k ${c}">${l} <small>${a.length}</small></span>${a.join('')||'<span class="dc-none">—</span>'}</div>`;
+      q('.tb-verdict').innerHTML=vr('dc-good','Đắc địa',GD)+vr('dc-mid','Bình (Hưu)',MD)+vr('dc-bad','Hãm',BD);
+      /* ── ÁN KHÔNG GIAN: huy hiệu số ở vành ngoài; chạm để xem riêng từng án ── */
+      while(ov.firstChild)ov.removeChild(ov.firstChild);
+      wd.forEach((w,i)=>{w.setAttribute('fill',EL[CUNG[i][1]]);w.setAttribute('fill-opacity',.27);w.style.opacity=''});
+      const AN=[],pk=k=>pos0[k]&&!pos0[k].center?pos(k):null,ta=pk('TA'),CN=i=>CUNG[i][0],nm=k=>pos0[k].ten;
+      const MOTA={YEM:'Thủy Kích đồng cung Thái Ất — sao sát đè thẳng lên đế tinh.',TU:'Văn Xương hoặc tướng đồng cung Thái Ất — Thái Ất bị vây giữ.',TINH:'Tướng chủ và tướng khách đồng cung — hai bên ngáng nhau, bế tắc.',BACH:'Sao kề Thái Ất một thần hoặc một cung — ép từ một phía (trước = Ngoại, sau = Nội).',KICH:'Thủy Kích kề Thái Ất một thần hoặc một cung — đòn giáng trực diện.',CACH:'Thủy Kích hoặc tướng đứng đối xung 180° với Thái Ất.',DOI:'Văn Xương đứng đối xung 180° với Thái Ất — đại thần hai lòng.',HIEP:'Hai sao đứng hai bên kẹp chặt — thế gọng kìm.'};
+      const TEN={YEM:'Yểm',TU:'Tù',TINH:'Tính',BACH:'Bách',KICH:'Kích',CACH:'Cách',DOI:'Đối',HIEP:'Hiệp'};
+      const sn=stepNow(),sd=(p,t)=>mod(p-t+7,16)-7,kd=d=>(d>0?'Ngoại':'Nội')+' ('+(Math.abs(d)===1?'thần':'cung')+')';
+      const TG=[['Chủ Đại Tướng',/đại chủ/,'C','CH'],['Chủ Tham Tướng',/tham chủ/,'C','CH'],['Khách Đại Tướng',/đại khách/,'K','KH'],['Khách Tham Tướng',/tham khách|khách tham/,'K','KH']].map(([n,re,s,k])=>{const i=ex(re);return{n,s,k,p:i<0?null:mod(i+sn,16)}}).filter(x=>x.p!==null);
+      const VXo=pk('VX')===null?[]:[{n:nm('VX'),p:pk('VX'),s:'V',k:'VX'}],TKo=pk('TK')===null?[]:[{n:nm('TK'),p:pk('TK'),s:'S',k:'TK'}];
+      if(ta!==null){
+        const TAo={n:nm('TA'),p:ta,s:'T',k:'TA'},E=VXo.concat(TG);
+        TKo.filter(x=>x.p===ta).forEach(x=>AN.push({t:'YEM',n:`Án Yểm — ${x.n} đè Thái Ất`,f:ta,to:ta,c:'#E74C3C',k:['TA','TK']}));
+        E.filter(x=>x.p===ta).forEach(x=>AN.push({t:'TU',n:`Án Tù — ${x.n} đồng cung Thái Ất`,f:ta,to:ta,c:'#A569BD',k:['TA',x.k]}));
+        TG.filter(x=>x.s==='C').forEach(x=>TG.filter(y=>y.s==='K'&&y.p===x.p).forEach(y=>AN.push({t:'TINH',n:`Án Tính — ${x.n} và ${y.n} đồng cung`,f:x.p,to:x.p,c:'#F1C40F',k:['CH','KH']})));
+        TKo.forEach(x=>{const d=sd(x.p,ta);if(d&&Math.abs(d)<=2)AN.push({t:'KICH',n:`Án Kích ${kd(d)} — ${x.n} kề Thái Ất`,f:x.p,to:ta,c:'#E74C3C',k:[x.k,'TA']})});
+        E.forEach(x=>{const d=sd(x.p,ta);if(d&&Math.abs(d)<=2)AN.push({t:'BACH',n:`Án Bách ${kd(d)} — ${x.n} ép Thái Ất`,f:x.p,to:ta,c:'#E67E22',k:[x.k,'TA']})});
+        TKo.concat(TG).forEach(x=>{if(sd(x.p,ta)===8)AN.push({t:'CACH',n:`Án Cách — ${x.n} xung chiếu Thái Ất`,f:x.p,to:ta,c:'#B565E0',k:[x.k,'TA']})});
+        VXo.forEach(x=>{if(sd(x.p,ta)===8)AN.push({t:'DOI',n:`Án Đối — ${x.n} xung chiếu Thái Ất`,f:x.p,to:ta,c:'#8E6BE0',k:[x.k,'TA']})});
+        const hiep=(T,att)=>{const L=att.filter(x=>[1,2].includes(sd(T.p,x.p))),R=att.filter(x=>[1,2].includes(sd(x.p,T.p)));
+          if(L.length&&R.length){const lo=sd(T.p,L[0].p),ro=sd(R[0].p,T.p);AN.push({t:'HIEP',n:`Án Hiệp — ${T.n} bị ${L[0].n} và ${R[0].n} kẹp`,f:mod(T.p-lo,16),f2:mod(T.p+ro,16),sL:lo,sR:ro,to:T.p,c:'#5DADE2',k:[T.k,L[0].k,R[0].k]})}};
+        hiep(TAo,TKo.concat(VXo,TG.filter(x=>x.s==='K')));
+        TG.forEach(T=>hiep(T,TG.filter(x=>x.s!==T.s)));
+      }
+      AN.forEach((a,i)=>{a.id=a.t+'_'+a.f+'_'+a.to+'_'+i;a.num=i+1});
+      if(sel&&!AN.some(a=>a.id===sel))sel=null;
+      const SA=AN.find(a=>a.id===sel);
+      const DM=[5,15,25,35],lp=[],bal={C:0,K:0};{const tc=+tn('chủ'),tkh=+tn('khách');
+        if(DM.includes(tc)){bal.C++;lp.push('BẪY MÔN ĐỖ — Toán chủ '+tc+': cửa đóng')}if(DM.includes(tkh)){bal.K++;lp.push('BẪY MÔN ĐỖ — Toán khách '+tkh+': cửa đóng')}
+        const g=n=>TG.find(x=>x.n===n),dc=g('Chủ Đại Tướng'),tcz=g('Chủ Tham Tướng'),dk=g('Khách Đại Tướng'),tk2=g('Khách Tham Tướng'),v=pk('VX'),eq=(x,y)=>x&&y&&x.p===y.p;
+        if(v!==null&&v===ta&&(eq(dc,tcz)||eq(dk,tk2)))lp.push('TỨ QUÁCH CỐ — Văn Xương bị Tù, đại tướng và tham tướng ngáng nhau');
+        if(v!==null&&tk2&&dc&&dk&&tk2.p===v&&dc.p===dk.p&&AN.some(a=>['YEM','BACH','TINH','CACH','HIEP'].includes(a.t)))lp.push('TỨ QUÁCH ĐỖ — chủ/khách ngáng nhau, thêm án: bế tắc')}
+      const lock=lp.length>0;
+      AN.forEach(a=>{if(!['TU','TINH','BACH','CACH','HIEP'].includes(a.t))return;(a.t==='TINH'?['CH','KH']:[a.t==='TU'?a.k[1]:a.k[0]]).forEach(k=>{if(k==='CH')bal.C++;if(k==='KH')bal.K++})});
+      const ngs={C:0,K:0};TG.forEach(x=>{const h=HANH_BY_TEN[x.n];if(h)ngs[x.s]+=TRANG_THAI[trangThai(h,CUNG[x.p][1])].diem});
+      {const sg=n=>(n>0?'+':'')+n,lead=bal.C===bal.K?null:(bal.C<bal.K?'Chủ':'Khách');
+       q('.tb-bal').innerHTML=`<div class="bal-box"><b>Cán cân án không gian</b>: Chủ <b>${bal.C}</b> án bất lợi · Khách <b>${bal.K}</b> án bất lợi → `+(lead?`<b>${lead} thuận hơn</b>`:`<b>ngang nhau</b>; xét ngũ hành (phụ): Chủ ${sg(ngs.C)} · Khách ${sg(ngs.K)} → `+(ngs.C===ngs.K?'vẫn ngang':(ngs.C>ngs.K?'Chủ':'Khách')+' nhỉnh hơn'))+`<small>Đếm án đè lên tướng mỗi phe và Toán cửa đóng. Theo sách, ngũ hành chỉ phân xử sau cùng.</small></div>`}
+      const oe=(t,a,par)=>{const e=document.createElementNS(NS,t);for(const k in a)e.setAttribute(k,a[k]);(par||ov).appendChild(e);return e};
+      const RT=284,trk=(i,d)=>P(RT,i*STEP+(d||0));
+      const arrow=(fr,to,col)=>{const dx=to[0]-fr[0],dy=to[1]-fr[1],Ln=Math.hypot(dx,dy)||1,ux=dx/Ln,uy=dy/Ln,bx=to[0]-ux*12,by=to[1]-uy*12;
+        oe('polygon',{points:`${f(to[0])},${f(to[1])} ${f(bx-uy*6)},${f(by+ux*6)} ${f(bx+uy*6)},${f(by-ux*6)}`,fill:col})};
+      const arc=(a1,a2,col,dash)=>{const p1=P(RT,a1),p2=P(RT,a2),sw=a2>a1?1:0,e=oe('path',{d:`M${f(p1[0])} ${f(p1[1])}A${RT} ${RT} 0 0 ${sw} ${f(p2[0])} ${f(p2[1])}`,fill:'none',stroke:col,'stroke-width':4,'stroke-linecap':'round'});
+        if(dash){e.setAttribute('stroke-dasharray','6 5');e.setAttribute('class','an-dash')}return e};
+      const outline=(i,col,w)=>oe('path',{d:wedge(i,240,300),fill:'none',stroke:col,'stroke-width':w||2.5});
+      act.forEach(n=>{if(pos0[n.k].center)return;ng[n.k].style.opacity=SA&&!SA.k.includes(n.k)?.25:(stOf(n.k)==='chet'?.72:'')});
+      if(SA){const a=SA,col=a.c,inv=new Set([a.f,a.to,a.f2]);
+        wd.forEach((w,i)=>{if(!inv.has(i))w.style.opacity=.3});
+        if(a.t==='YEM'||a.t==='TU'||a.t==='TINH'){oe('path',{d:wedge(a.to,236,311),fill:col,'fill-opacity':.2,stroke:col,'stroke-width':3,class:'an-pulse'})}
+        else if(a.t==='KICH'||a.t==='BACH'){const sdd=mod(a.to-a.f+7,16)-7,dir=sdd>0?1:-1,A1=a.f*STEP,A2=A1+sdd*STEP;
+          outline(a.f,col,2);outline(a.to,col,3);arc(A1,A2,col,a.t==='BACH');arrow(P(RT,A2-dir*9),P(RT,A2),col)}
+        else if(a.t==='CACH'||a.t==='DOI'){outline(a.f,col,3);outline(a.to,col,3);const p1=P(240,a.f*STEP),p2=P(240,a.to*STEP),g={x1:f(p1[0]),y1:f(p1[1]),x2:f(p2[0]),y2:f(p2[1])};
+          oe('line',Object.assign({stroke:col,'stroke-width':4,'stroke-opacity':.45},g));oe('line',Object.assign({stroke:'#f0d4ff','stroke-width':3,'stroke-dasharray':'3 9','stroke-linecap':'round',class:'an-dash'},g))}
+        else if(a.t==='HIEP'){wd[a.to].setAttribute('fill','#2c3e50');wd[a.to].setAttribute('fill-opacity',.9);outline(a.to,col,3);
+          [-1,1].forEach(sg=>{const g=a.to*STEP+sg*STEP/2,q1=P(238,g),q2=P(302,g);oe('line',{x1:f(q1[0]),y1:f(q1[1]),x2:f(q2[0]),y2:f(q2[1]),stroke:col,'stroke-width':5,'stroke-linecap':'round'})});
+          const A0=a.to*STEP;arc(A0-a.sL*STEP,A0-8,col);arrow(P(RT,A0-14),P(RT,A0-6),col);arc(A0+a.sR*STEP,A0+8,col);arrow(P(RT,A0+14),P(RT,A0+6),col)}
+        const cap=oe('text',{x:12,y:24,'font-size':13,'font-weight':700,fill:col,stroke:'#0d0c0b','stroke-width':3.5,'paint-order':'stroke'});cap.textContent=`${a.num}. Án ${TEN[a.t]}`}
+      if(lock){oe('circle',{cx:CX,cy:CY,r:312,fill:'none',stroke:'#a0a7ad','stroke-width':2.5,'stroke-dasharray':'11 6'})}
+      const bc={};AN.forEach(a=>{a.bcung=(a.t==='YEM'||a.t==='TU'||a.t==='TINH'||a.t==='HIEP')?a.to:a.f;bc[a.bcung]=(bc[a.bcung]||0)+1;a.bi=bc[a.bcung]-1});
+      AN.forEach(a=>{const off=(a.bi-(bc[a.bcung]-1)/2)*7,pt=P(295,a.bcung*STEP+off),on=a.id===sel;
+        const g=oe('g',{'data-an':a.id,'pointer-events':'all',style:'cursor:pointer'});
+        oe('circle',{cx:f(pt[0]),cy:f(pt[1]),r:on?9.5:7.5,fill:a.c,stroke:on?'#fff':'#0d0c0b','stroke-width':on?2.5:1.5},g);
+        oe('text',{x:f(pt[0]),y:f(pt[1]),'text-anchor':'middle','dominant-baseline':'central','font-size':on?11:9.5,'font-weight':700,fill:'#fff','pointer-events':'none'},g).textContent=a.num;
+        oe('title',{},g).textContent=a.n});
+      q('.tb-an').innerHTML=(lock?lp.map(x=>'<div class="an-banner">'+x+'</div>').join(''):'')+(AN.length?'<p class="tb-hint" style="margin:0 0 4px">Chạm số trên đĩa hoặc bấm từng án để xem riêng đường nối.</p>'+AN.map(a=>`<button type="button" class="an-item an-btn${a.id===sel?' on':''}" data-id="${a.id}" style="border-left-color:${a.c}"><i class="an-n" style="background:${a.c}">${a.num}</i><b>${a.n}</b><small>${a.t==='YEM'||a.t==='TU'||a.t==='TINH'?CN(a.to):CN(a.f)+(a.f2!==undefined?' + '+CN(a.f2):'')+' → '+CN(a.to)}</small>${a.id===sel?`<em class="an-d">${MOTA[a.t]}</em>`:''}</button>`).join(''):'<div class="dc-none">Thế đĩa hiện tại không có án không gian.</div>');
+      window.anKhongGian={cuc_so:entry.cuc_so,an_khong_gian:AN.map(a=>({type:a.t,name:a.n,from_cung:CN(a.f),to_cung:CN(a.to),visual:{color:a.c}})),khoa_sa_ban:lock,can_an:{chu:bal.C,khach:bal.K}};
       let vx=null,opp=null;
       if(gk){const t=P(236,tue*STEP);['x1','y1'].forEach((a,j)=>L1.setAttribute(a,f(px[gk][j])));L1.setAttribute('x2',f(t[0]));L1.setAttribute('y2',f(t[1]));L1.style.display=''}else L1.style.display='none';
       if(px.VX){vx=pos('VX');opp=mod(vx+8,16);const t=P(236,opp*STEP);['x1','y1'].forEach((a,j)=>L2.setAttribute(a,f(px.VX[j])));L2.setAttribute('x2',f(t[0]));L2.setAttribute('y2',f(t[1]));L2.style.display=''}else L2.style.display='none';
@@ -2003,7 +2219,8 @@ const buildThienBan = (function(){
       const s=stepNow();
       q('.tb-ang').textContent=`Góc xoay ${f(mod(ang,360))}° · lệch ${s>0?'+':''}${s} cung (${f(s*STEP)}°)`;
       q('.tb-tbl').innerHTML=NODES.filter(n=>!n.extra||showX).map(n=>{const o=pos0[n.k],dot=`<span class="tb-dot" style="background:${n.c}${n.extra?';border-radius:2px;transform:rotate(45deg)':''}"></span>`;
-        return `<tr><td>${dot}${o?o.ten:n.ten}</td><td>${o?(o.center?'Trung Cung (không xoay)':CUNG[pos(n.k)][0]):'— không có trong cục'}</td></tr>`}).join('');
+        const t=o&&stOf(n.k),bd=t?` <span class="st st-${t}"><b class="st-g">${TRANG_THAI[t].g}</b>${TRANG_THAI[t].ten}</span>`:'';
+        return `<tr><td>${dot}${o?o.ten:n.ten}</td><td>${o?(o.center?'Trung Cung (không xoay)':CUNG[pos(n.k)][0]):'— không có trong cục'}${bd}</td></tr>`}).join('');
       const GIO=['23–1h','1–3h',null,'3–5h','5–7h','7–9h',null,'9–11h','11–13h','13–15h',null,'15–17h','17–19h','19–21h',null,'21–23h'];
       const DUONG={0:1,4:1,8:1,6:1,2:1},AM={12:1,10:1,14:1},THO=[1,5,9,13,10];
       const khoa=i=>{const c=CUNG[i][0];
@@ -2056,6 +2273,8 @@ const buildThienBan = (function(){
       else if(gk){const raw=mod(tue-pos0[gk].cung,16),d=raw>8?raw-16:raw;animate(d*STEP,1500)}
     }));
     q('.tb-extra').addEventListener('change',render);
+    const pick=e=>{const t=e.target.closest&&e.target.closest('[data-an],[data-id]');if(!t)return;const id=t.dataset.an||t.dataset.id;sel=sel===id?null:id;render()};
+    svg.addEventListener('click',pick);q('.tb-an').addEventListener('click',pick);
     /* ── Toàn màn hình (Fullscreen API; iPhone không hỗ trợ → dùng chế độ phủ kín màn hình) ── */
     (()=>{
       const body=q('.tb-body'),stage=q('.tb-stage');
@@ -2199,6 +2418,7 @@ function renderCucCard(item){
     <span class="donhe-tag">${donHeName(entry.loai_don)} · ${item.phu}</span>
   `;
   card.appendChild(head);
+  card.appendChild(buildSaoSummary(entry));
 
   // table wrap
   const tableWrap = document.createElement('div');
@@ -2219,7 +2439,7 @@ function renderCucCard(item){
   const grid = document.createElement('div');
   grid.className = 'main-grid';
   Object.entries(POSITIONS).forEach(([key,pos])=>{
-    const cell = buildGridCell(entry.grid[key]);
+    const cell = buildGridCell(entry.grid[key], key);
     cell.style.gridColumn = String(pos[0]);
     cell.style.gridRow = String(pos[1]);
     grid.appendChild(cell);
@@ -2233,11 +2453,7 @@ function renderCucCard(item){
   (entry.grid.center || []).forEach((line,i)=>{
     const div = document.createElement('div');
     div.className = i === 0 ? 'center-title' : 'center-line';
-    if (i === 0) {
-      div.textContent = line;
-    } else {
-      div.innerHTML = annotateGlossaryTerms(line);
-    }
+    div.innerHTML = renderLineSao(line, 'Thổ', 'Trung Cung');
     stamp.appendChild(div);
   });
   centerCell.appendChild(stamp);
